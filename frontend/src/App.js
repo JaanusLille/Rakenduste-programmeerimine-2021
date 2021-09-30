@@ -4,6 +4,8 @@ import Cart from './pages/Cart';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import AddItem from './pages/AddItem';
+import AddCategory from './pages/AddCategory';
+import Categories from './pages/CategoryPage';
 
 function App() {
   return (
@@ -19,6 +21,16 @@ function App() {
 
       <Route path='/add-item'>
         <AddItem />
+      </Route>
+      
+      {/* Siia lisada "kategooriate lisamine" ja "kategooriad" */}
+
+      <Route path='/add-category'>
+        <AddCategory/>
+      </Route>
+
+      <Route path='/categories'>
+        <Categories/>
       </Route>
     </div>
     

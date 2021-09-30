@@ -18,13 +18,16 @@ function Home() {
     },[])
 
     if (isLoading) {
-        return (<div>Leab...</div>);
+        return (<div>Laeb...</div>);
     }
 
     return (
         <div>
             <Link to="add-item">
                 <button>Lisa uus ese</button>
+            </Link>
+            <Link to="categories">
+                <button>Vaata kategooriaid</button>
             </Link>
             <ItemList items={loadedItems} />
         </div>

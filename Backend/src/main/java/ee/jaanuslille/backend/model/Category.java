@@ -26,4 +26,5 @@ public class Category {
 
 enum CategoryType {
     PREMIUM, DELUXE, BASIC
+    // Siit võtta kategooriad AddCategoryForm.js-i
 }
