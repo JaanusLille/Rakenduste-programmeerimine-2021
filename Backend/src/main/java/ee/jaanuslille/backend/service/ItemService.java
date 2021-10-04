@@ -13,10 +13,27 @@ public class ItemService {
     ItemRepository itemRepository;
 
     public List<Item> getItems() {
+        // funktsioon on repositorys olemas
         return itemRepository.findAll();
     }
 
     public void saveItem(Item item) {
+        // funktsioon on repositorys olemas
         itemRepository.save(item);
+    }
+
+    public void deleteItem(Long id) {
+        itemRepository.deleteById(id);
+    }
+
+    public void editItem(Item item){
+        itemRepository.save(item);
+    }
+
+    public Item getOneItem(Long id) throws Exception {
+        if (itemRepository.findById(id).isPresent()){
+        return itemRepository.findById(id).get();
+    }
+        throw new Exception();
     }
 }
