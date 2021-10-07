@@ -23,8 +23,19 @@ exports.createItem = async (req, res) => {
 }
 
 exports.updateItem = async (req, res) => {
+  const { id } = req.params;
+  var flag = 1;
+  const item = await Item.findOneAndUpdate({ _id: id },{$inc: {quality: flag}}, req.body);
 
-  // SIIN ASUB UPDATE ENDPOINT !!!
+  if (!item) res.status(404).send("No item with that id found");
+
+  const item2 = await Item.find({ _id: id })
+  // Ilma selleta objekt reaalselt suureneb küll, 
+  // aga päringu tehes seda ei kuvata
+
+  res.status(200).send(`Successfully updated the following item: \n ${item2}`)
+
+   // SIIN ASUB UPDATE ENDPOINT !!!
 }
 
 exports.deleteItem = async (req, res) => {
