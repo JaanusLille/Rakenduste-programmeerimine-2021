@@ -5,7 +5,6 @@ import Prost from './Prost';
 const Count = (props) => {
   const [counter, setCounter] = useState(0)
   const thing = props.thing;
-    const age = props.age;
     if ((thing === "drink")&&(counter === 28)) {
       return <Prost />;
     }
