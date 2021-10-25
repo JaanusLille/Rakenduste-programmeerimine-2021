@@ -5,10 +5,15 @@ function Navbar() {
     return(
         <div className="navbar">
             <Link to="/">
-                <img className="logo" src="Jaanuse_veebipood.png" alt=""/>
+                <img className="logo" src="/Jaanuse_veebipood.png" alt=""/>
             </Link>
-            <Link to="cart">
-                <img className="cart" src="cart.svg" alt=""/>
+
+            <Link to="/admin">
+                <button>Admini vaatesse</button> 
+            </Link>
+
+            <Link to="/cart">
+                <img className="cart" src="/cart.svg" alt=""/>
             </Link>
         </div>
     );
