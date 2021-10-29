@@ -1,16 +1,30 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3000
+const jwtAuth = require("./middleware/jwtAuth")
+require("dotenv").config()
 
 const itemRoutes = require('./routes/item');
+const authRoutes = require('./routes/auth');
 
 const app = express()
 app.use(express.json());
 
 app.use('/api/item', itemRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
+})
+
+app.get('/secret', jwtAuth, (req, res) => {
+  res.send('Secret Hello World!')
+    // {    message: 'Secret Hello World!',
+    // body: req.body })
+})
+
+app.get('*', (req, res) => {
+  res.send('This route exists not!')
 })
 
 mongoose

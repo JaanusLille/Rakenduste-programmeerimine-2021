@@ -8,6 +8,9 @@ exports.getItems = async (req, res) => {
   // console.log("items:" ,items);
 
 exports.createItem = async (req, res) => {
+
+  // Saaksin info kätte req.body-st
+
   const newItem = {
     name: "Table",
     quality: 99,
