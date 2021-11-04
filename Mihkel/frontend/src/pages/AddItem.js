@@ -2,13 +2,14 @@ import AddItemForm from '../components/AddItemForm'
 
 function AddItem() {
     function itemSubmitHandler(item) {
-        // console.log(item);
+        console.log(item);
 
         fetch('http://localhost:8080/items', {
             method: 'POST',
             body: JSON.stringify(item),
-            headers: {'Content-Type':'application/json'}
-        });
+            headers: {'Content-Type':'application/json'
+            }
+        }).then(res => ( res.status === 200 ? window.location.href = 'http://localhost:3000/admin' : ''));
     }
 
     return (

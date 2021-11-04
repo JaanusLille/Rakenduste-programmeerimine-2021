@@ -12,9 +12,9 @@
     <artifactId>backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Backend</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Backend</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>13</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -69,7 +69,6 @@
             <artifactId>springfox-boot-starter</artifactId>
             <version>3.0.0</version>
         </dependency>
-
     </dependencies>
 
     <build>

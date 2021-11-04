@@ -22,10 +22,15 @@ function CategoryPage() {
   
     return (
       <div>
-        <Link to="add-category">
+        <Link to="/add-category">
           <button>Lisa uus kategooria</button>
         </Link>
-        <CategoryList categories={loadedCategories}/>
+          <div>
+            <h2>Olemasolevad kategooriad: </h2>
+          </div>
+          <div className="categoryTerritory">
+            <CategoryList categories={loadedCategories}/>
+          </div>
       </div>
     )
   }

@@ -1,5 +1,5 @@
 import ItemList from '../components/ItemList';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 function Home() {
@@ -14,7 +14,7 @@ function Home() {
             console.log(data);
             setIsLoading(false);
             setLoadedItems(data);
-        });
+        })
     },[])
 
     if (isLoading) {
@@ -23,10 +23,10 @@ function Home() {
 
     return (
         <div>
-            <Link to="categories">
+            {/* <Link to="/categories">
                 <button>Vaata kategooriaid</button>
-            </Link>
-            <div>
+            </Link> */}
+            <div className="itemsTerritory">
                 <ItemList isAddToCart={true} items={loadedItems} />
             </div>
         </div>

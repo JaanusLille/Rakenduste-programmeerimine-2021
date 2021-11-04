@@ -5,9 +5,11 @@ import Item from '../components/Item';
 // [{1},{2},{3}].map({3}=>)
 function ItemList(props) {
     function deleteItem(itemId) {
-        // console.log(itemId)
+        console.log(itemId)
         props.onDeleteItem(itemId);
     }
+
+    // const items= Array.from(props.items);
 
     return(<div>
         {props.items.map(item=> (

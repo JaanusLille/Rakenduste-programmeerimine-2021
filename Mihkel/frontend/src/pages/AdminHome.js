@@ -35,14 +35,16 @@ function AdminHome() {
 
     return (
         <div>
-            <Link to="add-item">
+            <Link to="/add-item">
                 <button>Lisa uus ese</button>
             </Link>
             
-            <Link to="categories">
+            <Link to="/categories">
                 <button>Vaata kategooriaid</button>
             </Link>
-            <ItemList onDeleteItem={makeDeleteRequest} isAddToCart={false} items={loadedItems} />
+            <div className="itemsTerritory">
+                <ItemList onDeleteItem={makeDeleteRequest} isAddToCart={false} items={loadedItems} />
+            </div>
         </div>
     )
 }

@@ -7,17 +7,20 @@ function Item(props) {
     }
     
     return (
-        <div>
+        <div className="itemContainer">
             { props.isSingleItemView ? 
             <div>
-                <div className="itemName">{props.name}</div>
-                <div className="itemName">{props.price}</div>
-                <div className="itemName">{props.category}</div>
+                {/* <div className="itemId">{props.id}</div> */}
+                <div className="itemName"><strong>Nimetus:</strong> {props.name}</div>
+                <div className="itemPrice"><strong>Hind:</strong> {props.price}</div>
+                <div className="itemCategory"><strong>Kategooria:</strong> {props.category}</div>
             </div> : 
             <Link to={`item/${props.id}`}>
-                <div className="itemName">{props.name}</div>
-                <div className="itemName">{props.price}</div>
-                <div className="itemName">{props.category}</div>
+                <div>
+                <div className="itemName"><strong>Nimetus:</strong> {props.name}</div>
+                <div className="itemPrice"><strong>Hind:</strong> {props.price}</div>
+                <div className="itemCategory"><strong>Kategooria:</strong> {props.category}</div>
+                </div>
             </Link> }
 
             { props.isAddToCartButton ? <button>Lisa ostukorvi</button> : 
