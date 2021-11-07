@@ -45,6 +45,7 @@ function ShowMagic() {
       {/* <Greeting name="Jaanus" age="28"/> */}
       <Count name={"Jaanus"} thing={"drink"}/>
       {/* thing={"snack"} */}
+      <Greeting/>
     </div>
   );
 }

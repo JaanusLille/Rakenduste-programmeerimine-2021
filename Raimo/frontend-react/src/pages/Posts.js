@@ -1,95 +1,110 @@
-import { useContext, useState, useRef, useEffect } from "react"
-import { Context } from "../store"
-import { addPost, removePost, updatePosts } from "../store/actions"
+import { useContext } from "react"
+import {Context} from "../store"
+import { Form, Input, Button } from 'antd';
 
 function Posts() {
-
-    const [title, setTitle] = useState("")
     const [state, dispatch] = useContext(Context)
-    const inputRef = useRef(null)
 
-    // Ilma tühja dependency massiivita [] 
-    // Kutsub välja igal renderdusel
-    // Tühja massiivi dependency-na esimest korda
-    // Saab kutsuda välja ka teatud "state" muutuste puhul
-    useEffect(() => {
-        console.log("true or false? ")
-        dispatch(updatePosts([
-            {
-                id: 1,
-                title: "Test-prefetched-array-1"
-            },
-            {
-                id: 2,
-                title: "Test-prefetched-array-2"
-            },
-            {
-                id: 3,
-                title: "Test-prefetched-array-3"
-            },
-            {
-                id: 4,
-                title: "Test-prefetched-array-4"
-            },
-        ]))
-    }, [])
-
-    // Võib ka lisada eraldi nupu "get latest from database" või midagi sarnast (Synch)
-
-    const handleSubmit = (e) => {
-        e.preventDefault()  // ei luba formil teha refresh-i
-
-        // const newPost = {
-        //     id: Date.now(),
-        //     title
-        // }
-        // dispatch(addPost(newPost))
-
-        setTitle("")
-
-        addNewPost()
-
-        if(inputRef.current) inputRef.current.focus()
-    }
-
-    const addNewPost = () => {
-
-        // Salvestame Andmebaasi
-        // Ja kui see on edukas, 
-        // Siis teeme dispatchi ja uuendame state lokaalselt
-
-        const newPost = {
-            id: Date.now(),
-            title,
-        };
-        dispatch(addPost(newPost));
+        const formItemLayout = {
+        labelCol: {
+        xs: { span: 14 },
+        sm: { span: 6 },
+    },
+        wrapperCol: {
+        xs: { span: 14 },
+        sm: { span: 6 },
+    },
+    };
+    const tailFormItemLayout = {
+        wrapperCol: {
+        xs: {
+        span: 14,
+        offset: 0,
+        },
+        sm: {
+        span: 10,
+        offset: 6,
+        },
+        },
     };
 
-    console.log({ state })
-    console.log({ inputRef })
 
-    return (
-        <div style={{ textAlign: "center" }}>
-            <h1>Posts</h1>
-            <form onSubmit={handleSubmit}>
-                <input ref={inputRef} type="text" value={title} onChange={e => setTitle(e.target.value)} autoFocus/>
-                <button type="submit">Submit</button>
-            </form>
+    const handleSubmit = e => {
+      const newPost = {
+        title: e.title,
+        desc: e.desc,
+        user: state.auth.user,
+        createdAt: new Date(Date.now())
+      }
+      addPost(newPost);
+    }
 
-            { state.posts.data.map((e) => (
-                <li key={ e.id }> 
-                    { e.id } { e.title } 
-                    <span 
-                        style={{ cursor: "pointer" }}
-                        onClick={() => dispatch(removePost(e.id))}
-                        >&#128540;
-                    </span>
-                </li>
-            )) }
-            {/* { index } { JSON.stringify(array) } */}
 
-        </div>
-    );
+    const addPost = async (post) => {
+      const response = await fetch('http://localhost:8081/api/post/create', {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+        body: JSON.stringify(post),
+        method: 'POST',
+      })
+        const data = await response.json()
+        dispatch(addPost(data))
+    }
+    
+
+
+  return (
+    <>
+      {state.auth.token && 
+        <Form 
+          {...formItemLayout}
+          name="addpost"
+          onFinish={handleSubmit}>
+
+        <Form.Item
+          label="Title" 
+          name="title"
+          rules={[
+          {
+            type: "string",
+            message: 'The input is empty',
+          },
+          {
+            required: true,
+            message: 'Please input your title',
+          },
+          ]}
+        >
+          <Input/>
+        </Form.Item>
+
+        <Form.Item 
+          label="desc" 
+          name="desc"
+          rules={[
+          {
+            type: "string",
+            message: 'The input is empty',
+          },
+          {
+            required: true,
+            message: 'Please input your post description',
+          },
+          ]}
+        >
+          <Input/>
+        </Form.Item>
+
+        <Form.Item {...tailFormItemLayout}>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+        }
+        </>
+    )
 }
 
 export default Posts;

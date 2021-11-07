@@ -1,4 +1,6 @@
 import React from "react"
+import PropTypes from "prop-types"
+
 
 const Greeting = ({ name, age }) => {
   return (
@@ -7,6 +9,16 @@ const Greeting = ({ name, age }) => {
       <p> { age } years old</p>
     </>
   )
+}
+
+Greeting.defaultProps = {
+  name: "defaultProps",
+  age: "-5"
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string.isRequired, 
+  age: PropTypes.number.isRequired
 }
 
 export default Greeting
