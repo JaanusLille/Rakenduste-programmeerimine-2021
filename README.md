@@ -1,7 +1,9 @@
 ## Projekti kirjeldus:   
 
 Jaanus Lille (paariline veel leidmata)
+
 Nimi: Accountability
+
 Idee: Videosuhtluse rakendus
 
 Kõik registreeritud kasutajad saavad broneerida videokõnesid, mille ajal nad teeksid mingit tööd mida oleks muidu üksi ilma emotsionaalse toeta raske teha üksi. Nagu võimlemine, koristamine või õppimine. 
