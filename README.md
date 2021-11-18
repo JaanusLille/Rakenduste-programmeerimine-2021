@@ -1,7 +1,6 @@
 ## Projekti kirjeldus:   
 
-Jaanus Lille (paariline veel leidmata)
-
+Jaanus Lille , Andres Naris
 Nimi: Accountability
 
 Idee: Videosuhtluse rakendus
